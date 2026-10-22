@@ -1,7 +1,9 @@
 # Hướng dẫn demo StrokeSOS — Tiếng Việt
 
-**Mở website:** https://rmit-hack-stroke-sos.vercel.app/  
-**Thời lượng:** khoảng hai phút.  
+**Mở website:** https://rmit-hack-stroke-sos.vercel.app/
+
+**Thời lượng:** khoảng hai phút.
+
 **Bản tiếng Anh:** [English demo guide](DEMO_EN.md).
 
 ## Chuẩn bị trước khi quay

@@ -1,7 +1,9 @@
 # StrokeSOS demo guide — English
 
-**Open:** https://rmit-hack-stroke-sos.vercel.app/  
-**Duration:** approximately two minutes.  
+**Open:** https://rmit-hack-stroke-sos.vercel.app/
+
+**Duration:** approximately two minutes.
+
 **Vietnamese version:** [Hướng dẫn tiếng Việt](DEMO_VI.md).
 
 ## Before recording
