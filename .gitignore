@@ -11,6 +11,8 @@ tidecloak.json
 .tide-pack.tgz
 data/tidecloak.json
 data/keycloakdb*
+data/bootstrap-state.json
+data/enrollment-links.json
 scripts/.skycloak-api-key
 tools/downloads/
 tools/docker/

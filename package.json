@@ -9,6 +9,8 @@
     "typecheck": "tsc --noEmit",
     "setup:vision": "node scripts/setup-vision.mjs",
     "tide:start": "node scripts/start-tidecloak.mjs",
+    "tide:bootstrap": "node scripts/bootstrap-tidecloak.mjs",
+    "tide:finish": "node scripts/bootstrap-tidecloak.mjs --finish",
     "test": "tsx --test tests/*.test.ts"
   },
   "dependencies": {

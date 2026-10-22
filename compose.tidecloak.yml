@@ -1,8 +1,18 @@
 # The web app runs on Vercel. This container runs ONLY the local Tide identity service.
 services:
+  tidecloak-data-init:
+    image: tideorg/tidecloak-dev:latest
+    user: "0"
+    entrypoint: ["chown", "-R", "1000:1000", "/opt/keycloak/data/h2"]
+    volumes:
+      - tidecloak-data:/opt/keycloak/data/h2
+    restart: "no"
   tidecloak:
     image: tideorg/tidecloak-dev:latest
     container_name: stroke-sos-tidecloak
+    depends_on:
+      tidecloak-data-init:
+        condition: service_completed_successfully
     ports:
       - "127.0.0.1:8080:8080"
     environment:

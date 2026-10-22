@@ -4,6 +4,12 @@
 
 The complete demo runs without credentials. It clearly labels simulated identity and authority. A real TideCloak adapter switches the app to documented SDK calls; it never fabricates a Tide rejection, ciphertext, signature, or API.
 
+**Live demo:** [rmit-hack-stroke-sos.vercel.app](https://rmit-hack-stroke-sos.vercel.app/) · **Repository:** [Mhoaii/RMIT_HACK-StrokeSOS](https://github.com/Mhoaii/RMIT_HACK-StrokeSOS)
+
+**Choose your demo guide:** [English](docs/DEMO_EN.md) · [Tiếng Việt](docs/DEMO_VI.md). Both include a timed two-minute script, button sequence and camera fallback.
+
+The public site currently uses labeled simulation. Local Docker/TideCloak was installed and started, but the real license activation returned Tide/Midgard HTTP 500. See [verified setup status](docs/SETUP_STATUS.md) before retrying; no real adapter or successful Tide network decrypt is claimed.
+
 ## Run on Windows
 
 Node.js 22 or newer is recommended. Dependencies and npm cache stay inside the project; no Python/pip or global npm installation is used.
@@ -74,6 +80,8 @@ TideCloak is a separate identity/encryption service. It does **not** run inside 
    This uses Docker Compose with `.env.local`, persists a named Docker volume, binds the identity server to **127.0.0.1:8080**, and reuses an existing container. It never deletes a realm or its database.
 
 4. Open **http://localhost:8080** and sign in with the master-admin credentials from `.env.local`. Use the official **Set up this realm** wizard for `zero-spyware-edge` and your license email. Complete the Tide account enrollment link yourself; the app has no functioning realm until enrollment and licensing finish.
+
+   Alternatively, for a **new** realm, `npm run tide:bootstrap` automates the verified Admin REST sequence without Python, Bash or jq. It creates the DPoP client and separate admin/paramedic accounts, then writes private invitation links to the Git-ignored `data/enrollment-links.json`. Complete both invitations yourself, then run `npm run tide:finish` to sign the IdP settings, grant governed admin authority last, and export the actual adapter. The admin has encryption permissions and no clinical decrypt; the paramedic gets Tier 1/2 decrypt. The helper refuses to overwrite an existing realm without its own state. The current local realm is partially initialized after a server-side license failure; do not run the wizard over it or delete its data as a retry strategy.
 5. In the realm's Tide console, create a **public** OIDC app `zero-spyware-edge-client`. Include exact local Web Origin `http://localhost:3000`, redirect URI `http://localhost:3000/*`, and logout redirect `http://localhost:3000/*`. This integration enables **strict DPoP**, so use DPoP-bound access tokens in the client configuration. The exact SDK relay is served at `/tide_dpop/...` with the template headers/rewrite.
 6. Configure the following roles under Tide governance. If quorum approvals are enabled, changes must be approved/committed by the real realm administrators:
 
