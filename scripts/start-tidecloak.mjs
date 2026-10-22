@@ -9,6 +9,10 @@ if (!process.env.KC_BOOTSTRAP_ADMIN_PASSWORD || !process.env.TIDE_LICENSE_EMAIL 
 }
 const workspaceDocker = path.join(process.cwd(), 'tools/docker/resources/bin/docker.exe');
 const docker = process.env.TIDECLOAK_DOCKER_EXE || (existsSync(workspaceDocker) ? workspaceDocker : 'docker');
-const child = spawn(docker,['compose','--env-file',envFile,'-f','compose.tidecloak.yml','up','-d'],{stdio:'inherit',windowsHide:true});
+// A custom Docker installation needs its credential helper on PATH too.
+const childEnv = { ...process.env };
+const pathKey = Object.keys(childEnv).find(key => key.toLowerCase() === 'path') || 'PATH';
+if (path.isAbsolute(docker)) childEnv[pathKey] = `${path.dirname(docker)}${path.delimiter}${childEnv[pathKey] || ''}`;
+const child = spawn(docker,['compose','--env-file',envFile,'-f','compose.tidecloak.yml','up','-d'],{stdio:'inherit',windowsHide:true,env:childEnv});
 child.on('error',error=>{console.error(`Docker could not start: ${error.message}. Install/start Docker Desktop first.`);process.exitCode=1;});
 child.on('exit',code=>{process.exitCode=code || 0;if(!code)console.log('TideCloak starting at http://localhost:8080. Finish the realm wizard and account enrollment, then export data/tidecloak.json.');});

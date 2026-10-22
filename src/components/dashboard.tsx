@@ -30,6 +30,7 @@ export default function Dashboard() {
   const canUnlock = e.ready && e.critical && e.countdown === 0 && e.auth.authenticated && e.auth.role === 'PARAMEDIC' && !e.closed;
   const ciphertext = displayCipher(e.bundles[2]);
   useEffect(() => { if (e.chat.length) chatEnd.current?.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); }, [e.chat]);
+  useEffect(() => { window.scrollTo(0, 0); }, [tab]);
   useEffect(() => { if (e.auth.authenticated && e.auth.role !== 'PARAMEDIC' && e.record) e.revoke('Responder role changed'); }, [e.auth.role, e.auth.authenticated, e.record, e.revoke]);
   async function authenticate() { setActionError(''); try { await e.auth.login(); e.log('INFO', `${simulated ? 'Simulated role session' : 'TideCloak login'} initiated.`); } catch (error) { setActionError(error instanceof Error ? error.message : 'Login unavailable'); } }
   async function logout() { e.revoke('Signed out'); try { await e.auth.logout(); } catch (error) { setActionError(error instanceof Error ? error.message : 'Logout unavailable'); } }
