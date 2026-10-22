@@ -51,4 +51,4 @@ To repeat: return to **Live operations**, click the reset icon **Start a new cas
 
 “The source integrates the official Tide SDK using its documented login, roles, doEncrypt and doDecrypt APIs. Docker and a local TideCloak instance are installed, but Tide's real license finalization returned HTTP 500, so this public deployment remains explicitly simulated for Tide authority. Local AES-GCM encryption, optional MediaPipe inference and the audit hash chain are real. Hardware attestation, multi-party signing, cross-user emergency release and network-enforced lease revocation are not claimed.”
 
-See [setup status](SETUP_STATUS.md) and the [README](../README.md) for the actual error and steps to resume setup. Do not remove the simulation label until real enrollment and network authorization tests succeed. Local TideCloak is not a public HTTPS backend for Vercel visitors.
+See [setup status](SETUP_STATUS.md) and the [setup guide](../guide.md) for the actual error and steps to resume setup. Do not remove the simulation label until real enrollment and network authorization tests succeed. Local TideCloak is not a public HTTPS backend for Vercel visitors.
